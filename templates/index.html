@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoax Checker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main>
+        <section class="hero">
+            <h1>Hoax Checker</h1>
+            <h2 id="subtitle">Cek Berita Anda: Fakta atau Hoax</h2>
+            <div class="tabs">
+                <button class="active" onclick="location.reload()">Cek Berita</button>
+            </div>
+            <form class="search-form" action="{{ url_for('check') }}" method="POST" id="check-form">
+                <textarea name="news_text" placeholder="Masukkan berita di sini..." required></textarea>
+                <button type="submit">Cek Sekarang →</button>
+            </form>
+            {% if news_text and predicted_label and predicted_prob is not none %}
+            <div class="result-container">
+                <p><strong>Berita Anda:</strong></p>
+                <div class="news-text">{{ news_text }}</div>
+                <p><strong>Prediksi:</strong> <span class="prediction-label">{{ predicted_label }}</span></p>
+                <p><strong>Tingkat Keyakinan:</strong> {{ "%.2f" % (predicted_prob * 100) }}%</p>
+                <button class="retry-btn" onclick="location.reload()">Cek Berita Lain</button>
+            </div>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>
