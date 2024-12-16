@@ -125,3 +125,25 @@ body {
 .result-container .retry-btn:hover {
     background-color: #ffa000;
 }
+
+#loading-spinner {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #fbc02d;
+}
+
+.statistics-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+.statistics-container img {
+    max-width: 80%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    background-color: #fff;
+}

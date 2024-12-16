@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, send_from_directory
 import torch
 import numpy as np
 from transformers import BertTokenizer, BertForSequenceClassification
@@ -41,6 +41,14 @@ label_map = {0: "Fakta", 1: "Hoax"}
 @app.route('/')
 def index():
     return render_template('index.html', news_text=None, predicted_label=None, predicted_prob=None)
+
+@app.route('/statistics')
+def statistics():
+    return render_template('statistics.html')
+
+@app.route('/hasil/<filename>')
+def hasil(filename):
+    return send_from_directory('hasil', filename)
 
 @app.route('/check', methods=['POST'])
 def check():

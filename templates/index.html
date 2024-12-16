@@ -13,11 +13,13 @@
             <h2 id="subtitle">Cek Berita Anda: Fakta atau Hoax</h2>
             <div class="tabs">
                 <button class="active" onclick="location.reload()">Cek Berita</button>
+                <button onclick="window.location.href='{{ url_for('statistics') }}'">Lihat Statistik</button>
             </div>
             <form class="search-form" action="{{ url_for('check') }}" method="POST" id="check-form">
                 <textarea name="news_text" placeholder="Masukkan berita di sini..." required></textarea>
                 <button type="submit">Cek Sekarang →</button>
             </form>
+            <div id="loading-spinner" style="display:none;">Loading...</div>
             {% if news_text and predicted_label and predicted_prob is not none %}
             <div class="result-container">
                 <p><strong>Berita Anda:</strong></p>
@@ -28,6 +30,31 @@
             </div>
             {% endif %}
         </section>
+        <br>
+
+        <section class="examples">
+            <h2>Contoh Penggunaan (Berita diambil melalui komdigi.go.id)</h2>
+            <p>Berita Hoax</p>
+            <div class="result-container">
+                <p><strong>Berita Anda:</strong></p>
+                <div class="news-text">Sistem Pendidikan di Indonesia Dipengaruhi Aliran Satanik</div>
+                <p><strong>Prediksi:</strong> <span class="prediction-label">Hoax</span></p>
+                <p><strong>Tingkat Keyakinan:</strong> 97.49%</p>
+            </div>
+
+            <p>Berita Fakta</p>
+            <div class="result-container">
+                <p><strong>Berita Anda:</strong></p>
+                <div class="news-text">Menkomdigi Ajak Mahasiswa Jadi Pilot Bijak AI di Universitas Gadjah Mada</div>
+                <p><strong>Prediksi:</strong> <span class="prediction-label">Fakta</span></p>
+                <p><strong>Tingkat Keyakinan:</strong> 99.15%</p>
+            </div>
+        </section>
     </main>
+    <script>
+        document.getElementById('check-form').addEventListener('submit', function() {
+            document.getElementById('loading-spinner').style.display = 'block';
+        });
+    </script>
 </body>
 </html>

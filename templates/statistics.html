@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main>
+        <section class="hero">
+            <h1>Hasil Training</h1>
+            <div class="tabs">
+                <button onclick="window.location.href='{{ url_for('index') }}'">Cek Berita</button>
+                <button class="active" onclick="location.reload()">Lihat Statistik</button>
+            </div>
+            
+            <div class="statistics-container">
+                <div>
+                    <h2>Confusion Matrix</h2>
+                    <img src="{{ url_for('hasil', filename='confusion_matrix.png') }}" alt="Confusion Matrix">
+                </div>
+                <div>
+                    <h2>F1 Score</h2>
+                    <img src="{{ url_for('hasil', filename='grafik_f1.png') }}" alt="F1 Score">
+                </div>
+                <div>
+                    <h2>Loss</h2>
+                    <img src="{{ url_for('hasil', filename='grafik_loss.png') }}" alt="Loss">
+                </div>
+                <div>
+                    <h2>Accuracy</h2>
+                    <img src="{{ url_for('hasil', filename='grafik_acc.png') }}" alt="Accuracy">
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
